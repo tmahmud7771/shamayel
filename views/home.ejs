@@ -12,27 +12,7 @@
     <h1 style="font-family: 'Open Sans', sans-serif; font-size: 3em; font-weight: bold; text-align: center;">HOME PAGE</h1>
 
     <!-- navbar -->
-    <nav class="navbar navbar-expand-lg bg-body-tertiary">
-      <div class="container-fluid">
-        <a class="navbar-brand" href="#">SHMAYEL.CO</a>
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-          <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarSupportedContent">
-          <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-            <li class="nav-item">
-              <a class="nav-link active" aria-current="page" href="#">Home</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="/rentals">Rental</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link ">Contact</a>
-            </li>
-          </ul>
-        </div>
-      </div>
-    </nav>
+    <%- include("./navbar") %>
      <!-- navbar -->
 
 
@@ -73,58 +53,59 @@
       </div>
      </div>
 
-     <!-- featured products -->
+
 
      <br>
-     <!-- card -->
+
+
+
+    <h1 class="text-bg-dark text-center">FEATURED</h1>
+
+
+    <div class="container text-center">
+      <div class="row">
+
+        <% for (var i = 0; i < 3; i++) { %>
+        <div class="col">
+          <div class="card" style="width: 18rem;">
+            <img src="<%= feature_data[i].imageUrls %>" class="card-img-top" alt="...">
+            <div class="card-body">
+              <h5 class="card-title"><%= feature_data[i].headline %></h5>
+              <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+              <a href="#" class="btn btn-primary"><%= feature_data[i].pricePerNight %></a>
+            </div>
+          </div>           
+        </div>
+        <% } %>
+
+      </div>
+    </div>
+
+
+
+    <h1 class="text-bg-dark text-center">COUNTRY</h1>
+
 
 
 
     <div class="container text-center">
       <div class="row">
+
+        <% for (var i = 0; i < 3; i++) { %>
         <div class="col">
           <div class="card" style="width: 18rem;">
-            <img src="https://images.unsplash.com/photo-1675670541093-d5488705d784?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=764&q=80" class="card-img-top" alt="...">
+            <img src="<%= country_data[i].imageUrls %>" class="card-img-top" alt="...">
             <div class="card-body">
-              <h5 class="card-title">Card title</h5>
+              <h5 class="card-title"><%= country_data[i].headline %></h5>
               <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-              <a href="#" class="btn btn-primary">Go somewhere</a>
+              <a href="#" class="btn btn-primary"><%= country_data[i].pricePerNight %></a>
             </div>
           </div>           
         </div>
-        <div class="col">
-          <div class="card" style="width: 18rem;">
-            <img src="https://images.unsplash.com/photo-1675670541093-d5488705d784?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=764&q=80" class="card-img-top" alt="...">
-            <div class="card-body">
-              <h5 class="card-title">Card title</h5>
-              <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-              <a href="#" class="btn btn-primary">Go somewhere</a>
-            </div>
-          </div>
-        </div>
-        <div class="col">
-          <div class="card" style="width: 18rem;">
-            <img src="https://images.unsplash.com/photo-1675670541093-d5488705d784?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=764&q=80" class="card-img-top" alt="...">
-            <div class="card-body">
-              <h5 class="card-title">Card title</h5>
-              <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-              <a href="#" class="btn btn-primary">Go somewhere</a>
-            </div>
-          </div>
-        </div>
-        <div class="col">
-          <div class="card" style="width: 18rem;">
-            <img src="https://images.unsplash.com/photo-1675670541093-d5488705d784?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=764&q=80" class="card-img-top" alt="...">
-            <div class="card-body">
-              <h5 class="card-title">Card title</h5>
-              <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-              <a href="#" class="btn btn-primary">Go somewhere</a>
-            </div>
-          </div>
-        </div>
+        <% } %>
+
       </div>
     </div>
-
 
 
 

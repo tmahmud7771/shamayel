@@ -13,7 +13,19 @@
 // const path = require("path");
 const express = require("express");
 const app = express();
-var bodyParser = require('body-parser')
+var bodyParser = require('body-parser');
+var data = require("./rental-db");
+
+all_data = data.all_data();
+
+feature_data = data.getFeaturedRentals();
+
+country_data = data.getRentalsByCityAndProvince("Toronto","Ontario")
+
+
+console.log(all_data)
+console.log(feature_data)
+console.log(country_data)
 
 app.use(bodyParser.urlencoded({extended: true}));
 
@@ -27,13 +39,13 @@ app.set('view engine', 'ejs');
 // Routes for the home page
 app.get("/", (req, res) => {
     // res.send("home page");
-    res.render("home");
+    res.render("home",{feature_data:feature_data});
 });
 
 // Routes for the rental page
 app.get("/rentals", (req, res) => {
     // res.send("rentals page");
-    res.render("rentals");
+    res.render("rentals",{all_data: all_data, country_data: country_data});
 });
 
 // Routes for the singup page

@@ -16,6 +16,8 @@ const app = express();
 var bodyParser = require('body-parser');
 var data = require("./rental-db");
 
+app.use(bodyParser.urlencoded({ extended: false }));
+
 all_data = data.all_data();
 
 feature_data = data.getFeaturedRentals();
@@ -61,6 +63,70 @@ app.get("/log-in", (req, res) => {
 });
 
 
+//post
+
+app.use(bodyParser.urlencoded({ extended: false }));
+
+app.post('/login', (req, res) => {
+  const { email, password } = req.body;
+
+
+  if (!email || !password) {
+    return res.status(400).send('Please enter a email and password');
+  }
+
+
+  const loginForm = document.querySelector('form[action="/login"]');
+
+  loginForm.addEventListener('submit', (event) => {
+  const username = event.target.elements.username.value;
+  const password = event.target.elements.password.value;
+
+  if (!username || !password) {
+    event.preventDefault();
+    alert('Please enter a username and password');
+  }
+});
+
+ 
+
+  res.send('Authenticated successfully!');
+});
+
+
+//register
+
+app.post('/register', (req, res) => {
+  const { email, password } = req.body;
+
+  const emailRegex = /^\w+([.-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,})+$/;
+  const passwordRegex = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[!@#$%^&*]).{8,12}$/;
+
+  let errors = [];
+
+  if (!email) {
+    errors.push('Email is required');
+  } else if (!emailRegex.test(email)) {
+    errors.push('Invalid email address');
+  }
+
+  if (!password) {
+    errors.push('Password is required');
+  } else if (!passwordRegex.test(password)) {
+    errors.push('Password must be 8-12 characters and contain at least one lowercase letter, uppercase letter, number and symbol');
+  }
+
+  if (errors.length > 0) {
+    return res.status(400).send(errors.join('\n'));
+  }
+
+  // Save user to database and perform other registration logic here
+  // ...
+
+  res.send('Registered successfully!');
+});
+
+
 
 
 // *** DO NOT MODIFY THE LINES BELOW ***
@@ -81,9 +147,6 @@ app.use(function (err, req, res, next) {
     console.error(err.stack)
     res.status(500).send("Something broke!")
 });
-
-
-
 
 
 

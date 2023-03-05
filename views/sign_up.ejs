@@ -7,16 +7,15 @@
     <title>SIGN UP PAGE</title>
 </head>
 <body>
-    <%- include("./navbar") %>
     <h1 style="text-align:center; background-color: #f2f2f2; padding: 15px;">SIGN UP PAGE</h1>
     <div style="text-align:center; background-color: #f2f2f2; padding: 15px;">
-    <form action="/signup" method="post">
-        <label style="font-weight: bold;">Username:</label><br>
-        <input type="text" name="username" style="padding: 10px; width: 200px;"><br>
+    <form action="/register" method="post">
+        <label for="email"style="font-weight: bold;">Username:</label><br>
+        <input type="text" name="email" id="email" style="padding: 10px; width: 200px;"><br>
         <label style="font-weight: bold;">Password:</label><br>
         <input type="password" name="password" style="padding: 10px; width: 200px;"><br>
         <label style="font-weight: bold;">Confirm Password:</label><br>
-        <input type="submit" value="Signup" style="padding: 10px; width: 80px;">
+        <button type="submit" style="padding: 10px; width: 80px;"></button>
     </form>
     </div>
 </body>

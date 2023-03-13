@@ -83,6 +83,17 @@ x_7 = {
     imageUrls: "https://images.unsplash.com/photo-1586023492125-27b2c045efd7?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=958&q=80",
     featuredRental: true,
 }
+x_8 = {
+    headline: "7 Beautiful 2 bedroom apartment",
+    numSleeps: 4,
+    numBedrooms: 2,
+    numBathrooms: 1,
+    pricePerNight: 1000,
+    city: "Secunda",
+    province: "provincial",
+    imageUrls: "https://images.unsplash.com/photo-1586023492125-27b2c045efd7?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=958&q=80",
+    featuredRental: true,
+}
 
 rentals.push(x_1);
 rentals.push(x_2);
@@ -91,6 +102,7 @@ rentals.push(x_4);
 rentals.push(x_5);
 rentals.push(x_6);
 rentals.push(x_7);
+rentals.push(x_8);
 
 
 exports.all_data = function() { 

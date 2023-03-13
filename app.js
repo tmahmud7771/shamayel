@@ -16,6 +16,7 @@ const app = express();
 var bodyParser = require('body-parser');
 var data = require("./rental-db");
 
+
 app.use(bodyParser.urlencoded({ extended: false }));
 
 all_data = data.all_data();
@@ -53,13 +54,13 @@ app.get("/rentals", (req, res) => {
 // Routes for the singup page
 app.get("/sign-up", (req, res) => {
     // res.send("sign-up page");
-    res.render("sign_up");
+    res.render("sign_up",{errors:null});
 });
 
 // Routes for the login page
 app.get("/log-in", (req, res) => {
     // res.send("log-in page");
-    res.render("login");
+    res.render("login",{errors:null});
 });
 
 
@@ -70,27 +71,31 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.post('/login', (req, res) => {
   const { email, password } = req.body;
 
+  const emailRegex = /^\w+([.-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,})+$/;
+  const passwordRegex = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[!@#$%^&*]).{8,12}$/;
 
-  if (!email || !password) {
-    return res.status(400).send('Please enter a email and password');
+  let errors = [];
+
+  if (!email) {
+    errors.push('Email is required');
+  } else if (!emailRegex.test(email)) {
+    errors.push('Invalid email address');
   }
 
-
-  const loginForm = document.querySelector('form[action="/login"]');
-
-  loginForm.addEventListener('submit', (event) => {
-  const username = event.target.elements.username.value;
-  const password = event.target.elements.password.value;
-
-  if (!username || !password) {
-    event.preventDefault();
-    alert('Please enter a username and password');
+  if (!password) {
+    errors.push('Password is required');
+  } else if (!passwordRegex.test(password)) {
+    errors.push('Password must be 8-12 characters and contain at least one lowercase letter, uppercase letter, number and symbol');
   }
-});
 
- 
+  if (errors.length > 0) {
+    res.render("login",{errors});
+  } 
 
-  res.send('Authenticated successfully!');
+  // Save user to database and perform other registration logic here
+  // ...
+
+  res.redirect("/")
 });
 
 
@@ -117,13 +122,13 @@ app.post('/register', (req, res) => {
   }
 
   if (errors.length > 0) {
-    return res.status(400).send(errors.join('\n'));
+    res.render("sign_up",{errors});
   }
 
   // Save user to database and perform other registration logic here
   // ...
 
-  res.send('Registered successfully!');
+  res.redirect("/")
 });
 
 

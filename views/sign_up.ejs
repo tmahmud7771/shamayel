@@ -5,13 +5,25 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>SIGN UP PAGE</title>
+    <style>
+        .error {
+            color: red;
+        }
+    </style>
 </head>
 <body>
     <h1 style="text-align:center; background-color: #f2f2f2; padding: 15px;">SIGN UP PAGE</h1>
     <div style="text-align:center; background-color: #f2f2f2; padding: 15px;">
     <form action="/register" method="post">
-        <label for="email"style="font-weight: bold;">Username:</label><br>
-        <input type="text" name="email" id="email" style="padding: 10px; width: 200px;"><br>
+        <label for="email"style="font-weight: bold;">Email:</label><br>
+        <input type="text" name="email" id="email" style="padding: 10px; width: 200px;"><br><br>
+        <% if (errors == null) { %>
+          <span class="error"></span>
+      <% } %>
+      <% if (errors != null) { %>
+          <span class="error"><%= errors %></span><br>
+
+      <% } %>
         <label style="font-weight: bold;">Password:</label><br>
         <input type="password" name="password" style="padding: 10px; width: 200px;"><br>
         <label style="font-weight: bold;">Confirm Password:</label><br>

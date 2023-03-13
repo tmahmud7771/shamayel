@@ -5,15 +5,27 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>LOGIN PAGE</title>
+    <style>
+        .error {
+            color: red;
+        }
+    </style>
 </head>
 <body>
     <h1 style="text-align:center; background-color: #f2f2f2; padding: 15px;">LOGIN PAGE</h1>
     <div style="text-align:center; background-color: #f2f2f2; padding: 15px;">
     <form action="/login" method="post">
-        <label for="username" style="font-weight: bold;">Username:</label><br>
+        <label for="username" style="font-weight: bold;">Email:</label><br>
         <input id ="email" type="text" name="email" style="padding: 10px; width: 200px;"><br>
+        <% if (errors == null) { %>
+            <span class="error"></span>
+        <% } %>
+        <% if (errors != null) { %>
+            <span class="error"><%= errors %></span><br>
+
+        <% } %>
         <label for="password" style="font-weight: bold;">Password:</label><br>
-        <input type="password" name="password" id="password" style="padding: 10px; width: 200px;"><br><br>
+        <input type="password" name="password" id="password" style="padding: 10px; width: 200px;"><br>
         <button type="submit" style="padding: 10px; width: 80px;">login</button>
     
     </form>
